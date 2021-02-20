@@ -1,9 +1,14 @@
 let dji;
 let vxx;
+
 let dji_dates;
 let vxx_dates;
+
 let inconsolata;
+
 let djiSlider;
+let vxxSlider;
+
 function preload() {
     dji = loadJSON('prediction_data/dji_data.json')
     vxx = loadJSON('prediction_data/vxx_data.json')
@@ -17,16 +22,20 @@ function setup() {
     inconsolata = loadFont('montserrat/Montserrat-Regular.otf');
     
     djiSlider = createSlider(100, dji_dates.length-1, 300);
-    djiSlider.position(width/20+235 , height/7+110);
+    djiSlider.position(width/20, height/7+110);
     djiSlider.style('width', '80px');
+    
+    vxxSlider = createSlider(100, vxx_dates.length-1, 300);
+    vxxSlider.position(width/20, height/2 + 100);
+    vxxSlider.style('width', '80px');
 }
 
 function draw() {
     background(255);
     drawDJIpred(djiSlider.value());
     drawDJIPointer(djiSlider.value());
-    drawVXXpred(500, 100);
-    drawVXXPointer(500, 100);
+    drawVXXpred(vxxSlider.value(), 100);
+    drawVXXPointer(vxxSlider.value(), 100);
     stroke(0);
     strokeWeight(10);
     line(0,height/2, width,height/2);
@@ -62,9 +71,18 @@ function drawDJIpred(lim) {
 function drawVXXpred(lim, y_max) {
     stroke(0,155,0);
     strokeWeight(1);
-    for(var i=1; i < lim; i++){
-        line( (i-1)*width/lim, map(vxx[vxx_dates[i-1]], 0,y_max, height, height/2), i*width/lim, map(vxx[vxx_dates[i]], 0,y_max, height, height/2));
+    for(var i=vxx_dates.length-1; i > vxx_dates.length-lim; i--){
+        var line_x1 = map(i-1, vxx_dates.length-lim, vxx_dates.length-1, 0, width);
+        var line_x2 = map(i, vxx_dates.length-lim, vxx_dates.length-1, 0, width);
+        line( line_x1, map(vxx[vxx_dates[i-1]], 0,y_max, height, height/2), line_x2, map(vxx[vxx_dates[i]], 0,y_max, height, height/2));
+        //line( (i-1)*width/lim, map(vxx[vxx_dates[i-1]], 0,y_max, height, height/2), i*width/lim, map(vxx[vxx_dates[i]], 0,y_max, height, height/2));
     }
+    
+    fill(47,96,162);
+    stroke(0);
+    textSize(45);
+    textFont(inconsolata)
+    text("Volatility Index: VXX", width/20, height/10 + height/2);
     
 }
 
@@ -74,21 +92,16 @@ function drawDJIPointer(lim) {
         //var y = map(dji[dji_dates[Math.round(mouseX * lim/width)]], 0, y_max, height/2, 0);x
         var dji_val = dji[dji_dates[ Math.round(map(mouseX, 0, width, dji_dates.length-lim, dji_dates.length))]];
         var y = map( dji_val, 0, y_max, height/2, 0);
-        console.log(y);
         fill(255,0,0);
         ellipse(mouseX, y, 10,10);
     }
     
-    fill(47,96,162);
-    stroke(0);
-    textSize(45);
-    textFont(inconsolata)
-    text("Volatility Index: VXX", width/20, height/10 + height/2);
 }
 
 function drawVXXPointer(lim, y_max) {
     if (mouseX < width && mouseX > 0){
-        var y = map(vxx[vxx_dates[Math.round(mouseX * lim/width)]], 0, y_max, height, height/2);
+        var vxx_val = vxx[vxx_dates[ Math.round(map(mouseX, 0, width, vxx_dates.length-lim, vxx_dates.length))]];
+        var y = map( vxx_val, 0, y_max, height, height/2);
         fill(255,0,0);
         ellipse(mouseX, y, 10,10);
     }
