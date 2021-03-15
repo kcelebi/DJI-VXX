@@ -5,4 +5,4 @@ The model was created by reading the top headlines in the WSJ from the past 20 y
 
 Demonstrations currently under construction.
 
-![vixdjidat](data/misc_img/vxx.png)
+![vxxgraph](data/misc_img/vxx.png) ![vxxdji_dat](data/misc_img/results.png)
