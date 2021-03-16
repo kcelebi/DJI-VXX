@@ -1,11 +1,15 @@
 class Plot {
 
-	constructor(name, data){
+	constructor(name, fname, x_lim, y_lim, ){
 		this.name = name;
-		this.data = data;
-		this.plot_dat = loadJSON(this.name);
+		this.fname = fname
+		this.plot_dat = loadJSON(this.fname);
 		this.dates = Object.keys(this.plot_dat);
 		this.length = this.dates.length;
+		this.x_lim = x_lim; //array of x lower/upper bound
+		this.y_lim = y_lim;
+
+		this.y_max = 40000;
 	}
 
 	//returns ith data point
@@ -43,7 +47,9 @@ class Plot {
 		var curr_data = getDataRange(lb, this.length-1);
 
 		for(var i=1; i < num_data; i++){
-			line(curr_dates[i-1], curr_data[i-1], curr_dates[i], curr_data[i]);
+			var line1 = [map(i-1, lb, this.length-1,this.x_lim[0], this.x_lim[1]), map(curr_data[i-1], 0, this.y_max, this.y_lim[0], this.y_lim[1]) ];
+			var line2 = [map(i, lb, this.length-1,this.x_lim[0], this.x_lim[1]), map(curr_data[i], 0, this.y_max, this.y_lim[0], this.y_lim[1]) ];
+			line(line1[0], line1[1], line2[0], line2[1]);
 		}
 
 	}
