@@ -1,9 +1,7 @@
-let dji, vxx, dji_date, cvpos;
+let dji, dji_date, cvpos;
 
 function preload() {
     dji = loadJSON('prediction_data/dji_data.json')
-    
-    //vxx = loadJSON('prediction_data/vxx_data.json')
 }
 
 function setup() {
@@ -17,11 +15,6 @@ function setup() {
 
 	//length of data is 5045, limit to 1000 ~~ 20%, go up by 1% on slider which is 50
 	dji_item_slider = createSlider(100, 1000, 250, 50);
-	
-	/*vxx_plot = new Plot("VXX", vxx, [0, width], [height/2, height]);
-	vxx_slider = createSlider(1, 100, 300);
-	vxx_slider.position(width/10, height/2+150);*/
-
 }
 
 function draw() {

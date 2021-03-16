@@ -2,26 +2,19 @@ let vxx, date, cvpos;
 
 function preload() {
     vxx = loadJSON('prediction_data/vxx_data.json')
-    
-    //vxx = loadJSON('prediction_data/vxx_data.json')
 }
 
 function setup() {
 	let cnv = createCanvas(windowWidth*4/5,700);
 	
 	cvpos = cnv.position();
-	date = Object.keys(dji);
-	vxx_plot = new Plot("VXX", dji, [0, width], [0, height]);
+	date = Object.keys(vxx);
+	vxx_plot = new Plot("VXX", vxx, [0, width], [0, height]);
 	vxx_slider = createSlider(1, 100, 100);
 	
 
 	//length of data is 5045, limit to 1000 ~~ 20%, go up by 1% on slider which is 50
 	vxx_item_slider = createSlider(100, 1000, 250, 50);
-	
-	/*vxx_plot = new Plot("VXX", vxx, [0, width], [height/2, height]);
-	vxx_slider = createSlider(1, 100, 300);
-	vxx_slider.position(width/10, height/2+150);*/
-
 }
 
 function draw() {

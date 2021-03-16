@@ -51,9 +51,11 @@ class Plot {
 		this.lowerbound = lb;
 		var curr_data = this.getDataRange(lb, this.length-1);
 
-		//console.log("Drawing plot " + this.name);
-        //console.log("Num data points: " + num_data);
-        //console.log("LB: " + lb);
+		if(this.name == "VXX"){
+			console.log("Drawing plot " + this.name);
+        	console.log("Num data points: " + num_data);
+        	console.log("LB: " + lb);
+    	}
     	
 		stroke(0,155,0);
         strokeWeight(1);
