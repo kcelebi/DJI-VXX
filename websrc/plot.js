@@ -1,9 +1,9 @@
 class Plot {
 
-	constructor(name, fname, x_lim, y_lim, ){
+	constructor(name, plot_dat, x_lim, y_lim, ){
 		this.name = name;
-		this.fname = fname
-		this.plot_dat = loadJSON(this.fname);
+		this.plot_dat = plot_dat;
+		console.log("Initializing data: " + this.name);
 		this.dates = Object.keys(this.plot_dat);
 		this.length = this.dates.length;
 		this.x_lim = x_lim; //array of x lower/upper bound
@@ -43,12 +43,18 @@ class Plot {
 	drawPlot(pc) {
 		var num_data = Math.round(this.length * pc);
 		var lb = (this.length-1) - num_data;
-		var curr_dates = getDateRange(lb,this.length-1);
-		var curr_data = getDataRange(lb, this.length-1);
+		var curr_dates = this.getDateRange(lb,this.length-1);
+		var curr_data = this.getDataRange(lb, this.length-1);
 
+		stroke(0,155,0);
+        strokeWeight(1);
+        console.log("Drawing plot " + this.name);
+        console.log("Num data points: " + num_data);
+        
 		for(var i=1; i < num_data; i++){
 			var line1 = [map(i-1, lb, this.length-1,this.x_lim[0], this.x_lim[1]), map(curr_data[i-1], 0, this.y_max, this.y_lim[0], this.y_lim[1]) ];
 			var line2 = [map(i, lb, this.length-1,this.x_lim[0], this.x_lim[1]), map(curr_data[i], 0, this.y_max, this.y_lim[0], this.y_lim[1]) ];
+			console.log(line1);
 			line(line1[0], line1[1], line2[0], line2[1]);
 		}
 

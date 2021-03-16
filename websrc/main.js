@@ -1,10 +1,17 @@
-let dji;
+let dji, vxx;
+
+function preload() {
+    dji = loadJSON('prediction_data/dji_data.json')
+    vxx = loadJSON('prediction_data/vxx_data.json')
+}
 
 function setup() {
 	createCanvas(1000,700);
-	dji = new Plot("DJI", "prediction_data/dji_data.json", [0, width], [0, height]);
+	dji_plot = new Plot("DJI", dji, [0, width], [0, height]);
 }
 
 function draw() {
-	background(0);
+	background(255);
+	dji_plot.drawPlot(0.1);
+
 }
