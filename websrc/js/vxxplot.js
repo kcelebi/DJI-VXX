@@ -11,7 +11,7 @@ function setup() {
 	cvpos = cnv.position();
 	date = Object.keys(vxx);
 	vxx_plot = new Plot("VXX", vxx, [100, width-100], [0, height], 100);
-	vxx_slider = createSlider(1, 100, 100);
+	vxx_slider = createSlider(1, date.length-1, date.length-1);
 	
 
 	//length of data is 5045, limit to 500 ~~ 10%, go up by 1% on slider which is 50
@@ -24,7 +24,7 @@ function draw() {
 	vxx_slider.position(cvpos.x + 25, cvpos.y + 50);
 	vxx_item_slider.position(cvpos.x + 25, cvpos.y + 100);
 
-	vxx_plot.drawPlot(vxx_slider.value()/100, vxx_item_slider.value());
+	vxx_plot.drawPlot(vxx_slider.value(), vxx_item_slider.value());
 
 	textSize(16);
 	textFont(inconsolata);
