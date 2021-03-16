@@ -9,7 +9,7 @@ function setup() {
 	
 	cvpos = cnv.position();
 	dji_date = Object.keys(dji);
-	dji_plot = new Plot("DJI", dji, [0, width], [0, height]);
+	dji_plot = new Plot("DJI", dji, [100, width-100], [100, height], 40000);
 	dji_slider = createSlider(1, 100, 100);
 	
 

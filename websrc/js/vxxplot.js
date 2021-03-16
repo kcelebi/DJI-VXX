@@ -9,7 +9,7 @@ function setup() {
 	
 	cvpos = cnv.position();
 	date = Object.keys(vxx);
-	vxx_plot = new Plot("VXX", vxx, [0, width], [0, height]);
+	vxx_plot = new Plot("VXX", vxx, [100, width-100], [0, height], 100);
 	vxx_slider = createSlider(1, 100, 100);
 	
 

@@ -1,6 +1,6 @@
 class Plot {
 
-	constructor(name, plot_dat, x_lim, y_lim){
+	constructor(name, plot_dat, x_lim, y_lim, y_max){
 		this.name = name;
 		this.plot_dat = plot_dat;
 		console.log("Initializing data: " + this.name);
@@ -12,7 +12,7 @@ class Plot {
 		this.lowerbound = 0;
 
 
-		this.y_max = 40000;
+		this.y_max = y_max;
 
 	}
 
