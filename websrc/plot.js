@@ -10,6 +10,7 @@ class Plot {
 		this.y_lim = y_lim;
 
 		this.y_max = 40000;
+
 	}
 
 	//returns ith data point
@@ -41,20 +42,22 @@ class Plot {
 
 	//draw the pc percentage of plot
 	drawPlot(pc) {
+		
 		var num_data = Math.round(this.length * pc);
-		var lb = (this.length-1) - num_data;
-		var curr_dates = this.getDateRange(lb,this.length-1);
+		var lb = this.length - num_data;
 		var curr_data = this.getDataRange(lb, this.length-1);
 
+		if(this.name == "VXX"){
+			console.log("Drawing plot " + this.name);
+	        console.log("Num data points: " + num_data);
+	        console.log("LB: " + lb);
+    	}
 		stroke(0,155,0);
         strokeWeight(1);
-        console.log("Drawing plot " + this.name);
-        console.log("Num data points: " + num_data);
-        
+
 		for(var i=1; i < num_data; i++){
-			var line1 = [map(i-1, lb, this.length-1,this.x_lim[0], this.x_lim[1]), map(curr_data[i-1], 0, this.y_max, this.y_lim[0], this.y_lim[1]) ];
-			var line2 = [map(i, lb, this.length-1,this.x_lim[0], this.x_lim[1]), map(curr_data[i], 0, this.y_max, this.y_lim[0], this.y_lim[1]) ];
-			console.log(line1);
+			var line1 = [map(i-1, 0, num_data, this.x_lim[0], this.x_lim[1], true), map(curr_data[i-1], 0, this.y_max, this.y_lim[1], this.y_lim[0], true) ];
+			var line2 = [map(i, 0, num_data, this.x_lim[0], this.x_lim[1], true), map(curr_data[i], 0, this.y_max, this.y_lim[1], this.y_lim[0], true) ];
 			line(line1[0], line1[1], line2[0], line2[1]);
 		}
 
