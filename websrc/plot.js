@@ -1,6 +1,6 @@
 class Plot {
 
-	constructor(name, plot_dat, x_lim, y_lim, plotlim){
+	constructor(name, plot_dat, x_lim, y_lim){
 		this.name = name;
 		this.plot_dat = plot_dat;
 		console.log("Initializing data: " + this.name);
@@ -8,8 +8,6 @@ class Plot {
 		this.length = this.dates.length;
 		this.x_lim = x_lim; //array of x lower/upper bound
 		this.y_lim = y_lim;
-
-		this.plotlim = plotlim;
 
 		this.lowerbound = 0;
 
@@ -46,7 +44,7 @@ class Plot {
 	}
 
 	//draw the pc percentage of plot
-	drawPlot(pc) {
+	drawPlot(pc, plotlim) {
 		
 		var num_data = Math.round(this.length * pc);
 		var lb = this.length - num_data;
@@ -61,8 +59,8 @@ class Plot {
         strokeWeight(1);
 
         var dx = 0;
-        if(num_data > this.plotlim){
-        	dx = Math.round(num_data/this.plotlim);
+        if(num_data > plotlim){
+        	dx = Math.round(num_data/plotlim);
         }
         else{
         	dx = 1;
