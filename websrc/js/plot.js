@@ -44,9 +44,9 @@ class Plot {
 	}
 
 	//draw the pc percentage of plot
-	drawPlot(pc, plotlim) {
+	drawPlot(num_data, plotlim) {
 		
-		var num_data = Math.round(this.length * pc);
+		//var num_data = Math.round(this.length * pc);
 		var lb = this.length - num_data;
 		this.lowerbound = lb;
 		var curr_data = this.getDataRange(lb, this.length-1);
@@ -60,14 +60,13 @@ class Plot {
 		stroke(0,155,0);
         strokeWeight(1);
 
-        /*var dx = 0;
+        var dx = 0;
         if(num_data > plotlim){
         	dx = Math.round(num_data/plotlim);
         }
         else{
         	dx = 1;
-        }//number of items on screen*/
-        var dx = 1;
+        }//number of items on screen
 
 		for(var i=dx; i < num_data; i+=dx){
 			var line1 = [map(i-dx, 0, num_data, this.x_lim[0], this.x_lim[1], true), map(curr_data[i-dx], 0, this.y_max, this.y_lim[1], this.y_lim[0], true) ];
@@ -77,22 +76,22 @@ class Plot {
 
 	}
 
-	drawCursor(pc, plotlim) {
-		var num_data = Math.round(this.length * pc);
+	drawCursor(num_data, plotlim) {
 		var lb = this.length - num_data;
 		var curr_data = this.getDataRange(lb, this.length-1);
 
-		/*var dx = 0;
+		var dx = 0;
         if(num_data > plotlim){
         	dx = Math.round(num_data/plotlim);
         }
         else{
         	dx = 1;
-        }//num*/
-        var dx = 1;
+        }
 
+        console.log("Num data: " + num_data);
+        console.log("dx: " + dx);
 
-		var y = Math.round(map(mouseX, 0, width, 0, num_data-1)); //gets us the ith data point
+		var y = Math.round(map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1)); //gets us the ith data point
 		console.log("y: " + y);
 		var mapy = map(curr_data[y], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
 		console.log("ymap: " + mapy);

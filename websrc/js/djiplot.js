@@ -11,7 +11,7 @@ function setup() {
 	cvpos = cnv.position();
 	dji_date = Object.keys(dji);
 	dji_plot = new Plot("DJI", dji, [100, width-100], [100, height], 40000);
-	dji_slider = createSlider(1, 100, 100);
+	dji_slider = createSlider(100, dji_date.length-1, dji_date.length-1);
 
 	//length of data is 5045, limit to 500 ~~ 10%, go up by 1% on slider which is 50
 	dji_item_slider = createSlider(100, 500, 250, 50);
@@ -23,9 +23,9 @@ function draw() {
 	dji_slider.position(cvpos.x + 25, cvpos.y + 50);
 	dji_item_slider.position(cvpos.x + 25, cvpos.y + 100);
 
-	dji_plot.drawPlot(dji_slider.value()/100, dji_item_slider.value());
+	dji_plot.drawPlot(dji_slider.value(), dji_item_slider.value());
 	if(mouseX > 100 && mouseX < width-100){
-		dji_plot.drawCursor(dji_slider.value()/100, dji_item_slider.value());
+		dji_plot.drawCursor(dji_slider.value(), dji_item_slider.value());
 	}
 
 	textSize(16);
