@@ -14,7 +14,7 @@ function setup() {
 	
 	//vxx_slider = createSlider(1, date.length-1, date.length-1);
 	
-	num_val = dji_date.length-1;
+	num_val = date.length-1;
 
 	//buttons
 	alltime = createButton("All Time");
@@ -50,12 +50,13 @@ function draw() {
 
 	vxx_plot.drawPlot(num_val, vxx_item_slider.value());
 	if(mouseX > 100 && mouseX < width-100 && mouseY>cvpos.y){
-		vxx_plot.drawCursor(num_val, dji_item_slider.value());
+		vxx_plot.drawCursor(num_val, vxx_item_slider.value());
 	}
 
 	textSize(16);
 	textFont(inconsolata);
 	stroke(0);
+	fill(0)
 	strokeWeight(0.1);
 	text("Date Range: " + date[vxx_plot.lowerbound] + " to Today", 25, 35);
 	text("Data Points Shown: " + vxx_item_slider.value()/50 + "%", 25, 95);
@@ -65,7 +66,7 @@ function draw() {
 
 //button funccs
 function _atime(){
-	num_val = dji_date.length-1; 
+	num_val = date.length-1; 
 }
 
 function _month(){
