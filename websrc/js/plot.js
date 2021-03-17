@@ -92,17 +92,14 @@ class Plot {
         console.log("dx: " + dx);
 
 		var i = Math.round(map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1)); //gets us the ith data point
-		var modx = map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1);
+		var modx = map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1); //get the intermidiate ival
 		console.log("i: " + i);
 		//need to correlate ith point to line between i and i+dx
 
-		var mapy1 = map(curr_data[i], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
+		var mapy1 = map(curr_data[i], 0, this.y_max, this.y_lim[1], this.y_lim[0], true); //map data points to range
 		var mapy2 = map(curr_data[i+dx], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
 
-		var res = this.tk.lineq([i, mapy1], [i+dx, mapy2], modx);
-
-		console.log(res);
-
+		var res = this.tk.lineq([i, mapy1], [i+dx, mapy2], modx); //solve for y for intermediate ival --> modx
 
 		stroke(100);
 		line(mouseX, height*125/1000, mouseX, height);
