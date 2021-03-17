@@ -68,6 +68,7 @@ function draw() {
 
 }
 
+//button funccs
 function _atime(){
 	num_val = dji_date.length-1; 
 }
