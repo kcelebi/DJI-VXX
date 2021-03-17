@@ -93,6 +93,8 @@ class Plot {
 
 		var y = Math.round(map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1)); //gets us the ith data point
 		console.log("y: " + y);
+		//need to correlate ith point to line between i and i+dx
+		
 		var mapy = map(curr_data[y], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
 		console.log("ymap: " + mapy);
 
@@ -102,6 +104,5 @@ class Plot {
 		fill(0,155,0);
 		ellipse(mouseX, mapy, 10,10);
 		
-
 	}
 }
