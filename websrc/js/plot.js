@@ -10,9 +10,9 @@ class Plot {
 		this.y_lim = y_lim;
 
 		this.lowerbound = 0;
-
-
 		this.y_max = y_max;
+
+		this.tk = new Toolkit();
 
 	}
 
@@ -91,18 +91,23 @@ class Plot {
         console.log("Num data: " + num_data);
         console.log("dx: " + dx);
 
-		var y = Math.round(map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1)); //gets us the ith data point
-		console.log("y: " + y);
+		var i = Math.round(map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1)); //gets us the ith data point
+		var modx = map(mouseX, this.x_lim[0], this.x_lim[1], 0, num_data-1);
+		console.log("i: " + i);
 		//need to correlate ith point to line between i and i+dx
-		
-		var mapy = map(curr_data[y], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
-		console.log("ymap: " + mapy);
+
+		var mapy1 = map(curr_data[i], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
+		var mapy2 = map(curr_data[i+dx], 0, this.y_max, this.y_lim[1], this.y_lim[0], true);
+
+		var res = this.tk.lineq([i, mapy1], [i+dx, mapy2], modx);
+
+		console.log(res);
 
 
 		stroke(100);
-		line(mouseX, 125, mouseX, height);
+		line(mouseX, height*125/1000, mouseX, height);
 		fill(0,155,0);
-		ellipse(mouseX, mapy, 10,10);
+		ellipse(mouseX, res, 10,10);
 		
 	}
 }
