@@ -50,5 +50,14 @@ a:hover {
   width: 200px;
   height: 150px; 
 }
+.file-form {
+  width: 50%;
+  margin: 0 auto; 
+}
+
+.title {
+  text-align: center;
+  padding-top: 5%;
+}
 
 

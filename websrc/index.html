@@ -5,6 +5,7 @@
         <link rel='stylesheet' type="text/css" href="styles/styles.css">
         <link rel="preconnect" href="https://fonts.gstatic.com"> 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel ='stylesheet' href ='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'>
     </head>
     
     <nav>
@@ -17,8 +18,19 @@
     </nav>
     
     <body>
-        <br>
-        <br>
-        <h1>Header for stuff!</h1>
+        <h1 class="title">Dow Jones and VXX Prediction</h1>
+        <main>
+            <form class = 'file-form'>
+                <label for ='name'>Input</label>
+                <input class='u-full-width' type='text' id='name' name='name'>
+                <label for='content'>Value</label>
+                <textarea class='u-full-width' type='text' id='content' name='content'></textarea>
+                <button class = "button-primary">Send</button>
+            </form>
+            <div class = 'loading'>
+                <img src='client/loading.gif'>
+            </div>
+        </main>
+        <script src="client/client.js"></script>
     </body>
 </html>
